@@ -20,8 +20,38 @@ class TestURLs:
     def test_valid_url_https_path(self):
         assert is_url("https://heise.de/thi_s&is=difficult")
 
+    def test_valid_url_port(self):
+        assert is_url("https://keycloak.example.org:2880")
+
+    def test_valid_url_dot(self):
+        assert is_url("https://keycloak.example.org.")
+
+    def test_valid_url_localhost(self):
+        assert is_url("https://localhost")
+
+    def test_valid_url_ip(self):
+        assert is_url("https://192.0.2.200")
+
+    def test_valid_url_ip_port(self):
+        assert is_url("https://192.0.2.200:8443")
+
     def test_invalid_url(self):
         assert not is_url("htp://heise.de")
+
+    def test_invalid_url_dot(self):
+        assert not is_url("http://.example.org")
+
+    def test_invalid_url_slash(self):
+        assert not is_url("http:/keycloak.example.org")
+
+    def test_invalid_url_no_slash(self):
+        assert not is_url("http:keycloak.example.org")
+
+    def test_invalid_url_no_colon(self):
+        assert not is_url("http//keycloak.example.org")
+
+    def test_invalid_url_port_letters(self):
+        assert not is_url("http://keycloak.example.org:nah")
 
 
 def test_token_introspection():
