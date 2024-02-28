@@ -5,23 +5,20 @@ from flaat.test_env import FLAAT_AT, FLAAT_ISS, environment
 
 
 class TestURLs:
-    def test_url_1(self):
-        assert is_url("http://heise.de")
-
     def test_valid_url_http(self):
-        assert is_url("http://heise.de")
+        assert is_url("http://example.org")
 
     def test_valid_url_https(self):
-        assert is_url("http://heise.de")
+        assert is_url("https://example.org")
 
     def test_valid_url_ftp(self):
-        assert is_url("http://heise.de")
+        assert is_url("ftp://example.org")
 
     def test_valid_url_https_path(self):
-        assert is_url("https://heise.de/thi_s&is=difficult")
+        assert is_url("https://example.org/thi_s&is=difficult")
 
     def test_invalid_url(self):
-        assert not is_url("htp://heise.de")
+        assert not is_url("htp://example.org")
 
 
 def test_token_introspection():
